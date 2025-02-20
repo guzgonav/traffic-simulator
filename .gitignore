@@ -1,0 +1,21 @@
+#Ignore compilation builds
+build/
+cmake-build-debug/
+
+#Ignore CMake generated files
+CMakeCache.txt
+CMakeFiles/
+
+#Ignore binaries and intermediate files
+*.o
+*.a
+*.so
+*.exe
+*.out
+
+#Ignore IDE configs
+.vscode/
+.idea/
+
+#For now, ignore UML Diagrams
+UML_Diagrams/
