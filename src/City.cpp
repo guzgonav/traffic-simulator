@@ -8,7 +8,7 @@ void City::addTrafficLight(const TrafficLight &light) {
     traffic_lights.push_back(light);
 }
 
-void City::addVehicle(Vehicle *vehicle) {
+void City::addVehicle(const std::shared_ptr<Vehicle> &vehicle) {
     vehicles.push_back(vehicle);
     vehicle->start(traffic_lights[0]); //Start the vehicle's thread
 }
@@ -32,7 +32,7 @@ void City::update() {
     }
 }
 
-Vehicle *City::prepareVehicle(int id) {
+std::shared_ptr<Vehicle> City::prepareVehicle(const int id) {
     std::string road_name;
     if (!roads.empty()) {
         const ulong random_index = rand() % roads.size();
@@ -41,7 +41,7 @@ Vehicle *City::prepareVehicle(int id) {
     const Road &road = getRoadByName(road_name);
     const int lane = rand() % road.getNumLanes(); //Assign a random lane
     const int speed = 2 + rand() % 3; //Random speed between 2 and 4
-    return new Car("Car" + std::to_string(id), speed, road_name, lane);
+    return std::make_shared<Car>("Car" + std::to_string(id), speed, road_name, lane);
 }
 
 TrafficLight &City::getTrafficLight() {
@@ -52,7 +52,7 @@ LightState City::getTrafficLightState() const {
     return traffic_lights[0].getState();
 }
 
-std::vector<Vehicle *> City::getVehicles() {
+std::vector<std::shared_ptr<Vehicle>> City::getVehicles() {
     return vehicles;
 }
 

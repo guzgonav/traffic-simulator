@@ -2,6 +2,7 @@
 #define CITY_H
 
 #include <vector>
+#include <memory>
 #include <iostream>
 #include "Road.hpp"
 #include "TrafficLight.hpp"
@@ -10,21 +11,21 @@
 class City {
 private:
     std::vector<Road> roads;
+    std::vector<std::shared_ptr<Vehicle>> vehicles;
     std::vector<TrafficLight> traffic_lights;
-    std::vector<Vehicle*> vehicles;
-public: 
-    void addRoad(const Road& road); 
+public:
     void addTrafficLight(const TrafficLight& light);
-    void addVehicle(Vehicle* vehicle);
+    void addVehicle(const std::shared_ptr<Vehicle> &vehicle);
+    void addRoad(const Road& road);
 
     void stopVehicles(); 
     void update();
 
-    Vehicle* prepareVehicle(int id); 
+    std::shared_ptr<Vehicle> prepareVehicle(int id);
 
     TrafficLight& getTrafficLight();
     LightState getTrafficLightState() const;
-    std::vector<Vehicle*> getVehicles();
+    std::vector<std::shared_ptr<Vehicle>> getVehicles();
     std::vector<Road> getRoads();
     Road& getRoadByName(const std::string& name); 
 };

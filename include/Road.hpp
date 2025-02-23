@@ -3,6 +3,8 @@
 
 #include <queue>
 #include <iostream>
+#include <memory>
+
 #include "Vehicle.hpp"
 
 class Road{
@@ -11,16 +13,16 @@ class Road{
         int num_lanes;
         int y_position; 
         int capacity; 
-        std::queue<Vehicle*> vehicles;
+        std::queue<std::shared_ptr<Vehicle>> vehicles;
     public:
-        Road(std::string name, int capacity, int lanes);
-        void addVehicle(Vehicle* vehicle);
+        Road(const std::string &name, int capacity, int lanes);
+        void addVehicle(const std::shared_ptr<Vehicle> &vehicle);
 
         std::string getName() const { return name; }
         int getNumLanes() const { return num_lanes; }
         int getYPosition() const { return y_position; }
 
-        void update();
+        void update() const;
 }; 
 
 #endif

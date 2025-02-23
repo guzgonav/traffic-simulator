@@ -7,7 +7,7 @@ Simulation::Simulation() : running(true){
     // city.addRoad(Road("Tertiary street", 3, 1));
     city.addTrafficLight(TrafficLight());
     for (int i = 0; i < 10; ++i) {
-        Vehicle* vehicle = city.prepareVehicle(i); 
+        std::shared_ptr<Vehicle> vehicle = city.prepareVehicle(i);
 
         city.addVehicle(vehicle);
     }

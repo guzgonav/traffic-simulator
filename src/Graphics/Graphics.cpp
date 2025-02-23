@@ -1,6 +1,6 @@
 #include "Graphics/Graphics.hpp"
 
-Graphics::Graphics(City& city) : city(city), window(sf::VideoMode(800, 600), "Traffic Simulator"){}
+Graphics::Graphics(City& city) : window(sf::VideoMode(800, 600), "Traffic Simulator"), city(city){}
 
 void Graphics::run(){
     while (window.isOpen()){
