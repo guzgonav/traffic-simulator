@@ -4,7 +4,7 @@ Graphics::Graphics(City& city) : window(sf::VideoMode(800, 600), "Traffic Simula
 
 void Graphics::run(){
     while (window.isOpen()){
-        sf::Event event;
+        sf::Event event{};
         while (window.pollEvent(event)){
             if (event.type == sf::Event::Closed){
                 window.close();
@@ -22,15 +22,15 @@ void Graphics::run(){
 
         //Draw roads
         for (auto& road : city.getRoads()){
-            sf::RectangleShape roadShape(sf::Vector2f(800, road.getNumLanes() * 40));
+            sf::RectangleShape roadShape(sf::Vector2f(800, static_cast<float>(road.getNumLanes() * 40)));
             roadShape.setPosition(0, road.getYPosition());  // Cada carretera en una fila diferente
             roadShape.setFillColor(sf::Color(50, 50, 50));
             window.draw(roadShape);
-            // Dibujar líneas discontinuas entre carriles
+            // Draw dashed lines between lanes
             for (int i = 1; i < road.getNumLanes(); ++i) {
-                float yPos = road.getYPosition() + i * 40; // Posición en Y del carril
+                float yPos = road.getYPosition() + i * 40; // Y position on the lane
 
-                // Create segments of uncontinued lines
+                // Create segments of dashed lines
                 for (float x = 0; x < 800; x += 40) {  // Space between segments
                     sf::RectangleShape laneSegment(sf::Vector2f(20, 3));  // Size of each segment
                     laneSegment.setPosition(x, yPos);
@@ -48,7 +48,7 @@ void Graphics::run(){
             const Road& road = city.getRoadByName(vehicle->getRoadName()); 
 
             //Determine the position in Y 
-            float y_position = road.getYPosition() + vehicle->getLane() * 40 + 10;
+            float y_position = road.getYPosition() + static_cast<float>(vehicle->getLane() * 40 ) + 10;
             car.setPosition(vehicle->getPosition(), y_position); 
             car.setFillColor(vehicle->getColor());
             window.draw(car);

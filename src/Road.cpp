@@ -1,6 +1,8 @@
 #include "Road.hpp"
 
-Road::Road(const std::string &name, const int capacity, const int lanes) : name(name), num_lanes(lanes), y_position(0),
+#include <utility>
+
+Road::Road(std::string name, const int capacity, const int lanes) : name(std::move(name)), num_lanes(lanes), y_position(0),
                                                         capacity(capacity) {
 }
 

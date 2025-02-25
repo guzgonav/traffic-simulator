@@ -17,5 +17,5 @@ CMakeFiles/
 .vscode/
 .idea/
 
-#For now, ignore UML Diagrams
-UML_Diagrams/
+#Ignore UML backups
+*.drawio.bkp

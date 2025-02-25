@@ -11,7 +11,7 @@
 #include <SFML/Graphics.hpp>
 
 class Vehicle {
-    protected: 
+protected:
     std::string id; 
     int speed; 
     float position; 
@@ -26,10 +26,10 @@ public:
     virtual ~Vehicle(); 
     virtual void move(TrafficLight& light) = 0; 
 
-    float getPosition() const { return position; }
-    sf::Color getColor() const { return color; }
-    std::string getRoadName() const { return road_name; }
-    int getLane() const { return lane; }
+    [[nodiscard]] float getPosition() const { return position; }
+    [[nodiscard]] sf::Color getColor() const { return color; }
+    [[nodiscard]] std::string getRoadName() const { return road_name; }
+    [[nodiscard]] int getLane() const { return lane; }
 
     void setPosition(const float new_position) { position = new_position; }
 
